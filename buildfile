@@ -1,9 +1,9 @@
 require 'buildr/single_intermediate_layout'
 require 'buildr/git_auto_version'
 
-desc 'GWT Performance Timing API integration'
-define 'gwt-performance-timing' do
-  project.group = 'org.realityforge.gwt.timing'
+desc 'GWT Performance Timeline API integration'
+define 'gwt-performance-timeline' do
+  project.group = 'org.realityforge.gwt.performance_timeline'
   compile.options.source = '1.6'
   compile.options.target = '1.6'
   compile.options.lint = 'all'
