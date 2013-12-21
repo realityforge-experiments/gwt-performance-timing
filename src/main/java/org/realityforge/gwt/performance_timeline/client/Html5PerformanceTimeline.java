@@ -45,4 +45,22 @@ public class Html5PerformanceTimeline
   private native JsArray<PerformanceEntryJso> getEntriesByName0( String name, String entryType )/*-{
     return $wnd.performance.getEntriesByName( name, entryType );
   }-*/;
+
+  @Override
+  public native void clearResourceTimings()/*-{
+    if (typeof ($wnd.performance.webkitClearResourceTimings) == "function") {
+      $wnd.performance.webkitClearResourceTimings();
+    } else if (typeof ($wnd.performance.clearResourceTimings) == "function") {
+      $wnd.performance.clearResourceTimings();
+    }
+  }-*/;
+
+  @Override
+  public native void setResourceTimingBufferSize( final int maxSize )/*-{
+    if (typeof ($wnd.performance.webkitSetResourceTimingBufferSize) == "function") {
+      $wnd.performance.webkitSetResourceTimingBufferSize(maxSize);
+    } else if (typeof ($wnd.performance.setResourceTimingBufferSize) == "function") {
+      $wnd.performance.setResourceTimingBufferSize(maxSize);
+    }
+  }-*/;
 }
