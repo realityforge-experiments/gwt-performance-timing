@@ -1,6 +1,7 @@
 package org.realityforge.gwt.performance_timeline.client;
 
 import com.google.gwt.core.client.JsArray;
+import com.google.web.bindery.event.shared.EventBus;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -13,6 +14,12 @@ public class Html5PerformanceTimeline
   public static native boolean isSupported()/*-{
     return typeof ($wnd.performance) == "object";
   }-*/;
+
+  public Html5PerformanceTimeline( @Nonnull final EventBus eventBus )
+  {
+    super( eventBus );
+    registerListeners0();
+  }
 
   @Nonnull
   public List<PerformanceEntry> getEntries()
@@ -61,6 +68,19 @@ public class Html5PerformanceTimeline
       $wnd.performance.webkitSetResourceTimingBufferSize(maxSize);
     } else if (typeof ($wnd.performance.setResourceTimingBufferSize) == "function") {
       $wnd.performance.setResourceTimingBufferSize(maxSize);
+    }
+  }-*/;
+
+  private native void registerListeners0() /*-{
+    var that = this;
+
+    var onResourceTimingBufferFullEvent = $entry( function () {
+      that.@org.realityforge.gwt.performance_timeline.client.PerformanceTimeline::onResourceTimingBufferFullEvent()()();
+    } );
+    if (typeof ($wnd.performance.onwebkitresourcetimingbufferfull) != "undefined") {
+      $wnd.performance.onwebkitresourcetimingbufferfull = onResourceTimingBufferFullEvent;
+    } else if (typeof ($wnd.performance.onresourcetimingbufferfull) != "undefined") {
+      $wnd.performance.onresourcetimingbufferfull = onResourceTimingBufferFullEvent;
     }
   }-*/;
 }

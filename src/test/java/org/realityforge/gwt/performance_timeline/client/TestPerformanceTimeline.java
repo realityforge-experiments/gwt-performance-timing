@@ -1,5 +1,6 @@
 package org.realityforge.gwt.performance_timeline.client;
 
+import com.google.gwt.event.shared.SimpleEventBus;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -11,8 +12,9 @@ final class TestPerformanceTimeline
 {
   private final List<PerformanceEntry> _entries;
 
-  TestPerformanceTimeline( final List<PerformanceEntry> entries )
+  TestPerformanceTimeline( final SimpleEventBus eventBus, final List<PerformanceEntry> entries )
   {
+    super( eventBus );
     _entries = entries;
   }
 
@@ -36,5 +38,15 @@ final class TestPerformanceTimeline
                                                                 @Nullable final EntryType entryType )
   {
     return (List<T>) _entries;
+  }
+
+  @Override
+  public void clearResourceTimings()
+  {
+  }
+
+  @Override
+  public void setResourceTimingBufferSize( final int maxSize )
+  {
   }
 }
