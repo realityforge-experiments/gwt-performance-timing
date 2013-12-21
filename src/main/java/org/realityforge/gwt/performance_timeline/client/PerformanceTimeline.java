@@ -47,5 +47,6 @@ public abstract class PerformanceTimeline
   public abstract <T extends PerformanceEntry> List<T> getEntriesByType( @Nonnull EntryType entryType );
 
   @Nonnull
-  public abstract <T extends PerformanceEntry> List<T> getEntriesByName( @Nonnull String name, @Nullable EntryType entryType );
+  public abstract <T extends PerformanceEntry> List<T> getEntriesByName( @Nonnull String name,
+                                                                         @Nullable EntryType entryType );
 }
