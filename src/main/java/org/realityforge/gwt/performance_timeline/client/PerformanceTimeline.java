@@ -61,6 +61,8 @@ public abstract class PerformanceTimeline
   public abstract <T extends PerformanceEntry> List<T> getEntriesByName( @Nonnull String name,
                                                                          @Nullable EntryType entryType );
 
+  public abstract boolean isSupported( @Nonnull EntryType entryType );
+
   public abstract void clearResourceTimings();
 
   public abstract void setResourceTimingBufferSize( int maxSize );

@@ -21,6 +21,26 @@ public class Html5PerformanceTimeline
     registerListeners0();
   }
 
+  @Override
+  public boolean isSupported( @Nonnull final EntryType entryType )
+  {
+    if( !isSupported() )
+    {
+      return false;
+    }
+    switch ( entryType )
+    {
+      case resource:
+        return isResourceEntryTypeSupported0();
+      case navigation:
+        return false;
+      case measure:
+      case mark:
+        return false;
+    }
+    return false;
+  }
+
   @Nonnull
   public List<PerformanceEntry> getEntries()
   {
@@ -81,6 +101,16 @@ public class Html5PerformanceTimeline
       $wnd.performance.onwebkitresourcetimingbufferfull = onResourceTimingBufferFullEvent;
     } else if (typeof ($wnd.performance.onresourcetimingbufferfull) != "undefined") {
       $wnd.performance.onresourcetimingbufferfull = onResourceTimingBufferFullEvent;
+    }
+  }-*/;
+
+  private native boolean isResourceEntryTypeSupported0() /*-{
+    if (typeof ($wnd.performance.webkitClearResourceTimings) == "function") {
+      return true;
+    } else if (typeof ($wnd.performance.clearResourceTimings) == "function") {
+      return true;
+    } else {
+      return false;
     }
   }-*/;
 }

@@ -18,6 +18,12 @@ final class TestPerformanceTimeline
     _entries = entries;
   }
 
+  @Override
+  public boolean isSupported( @Nonnull final EntryType entryType )
+  {
+    return true;
+  }
+
   @Nonnull
   @Override
   public List<PerformanceEntry> getEntries()
